@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stephen Brown — Systems Architect Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #2D6A4F;
+  --green-light: #40916C;
+  --green-deep: #1B4332;
+  --green-glow: rgba(45,106,79,0.10);
+  --gold: #C9A84C;
+  --gold-soft: rgba(201,168,76,0.12);
+  --charcoal: #2C2C2C;
+  --dark: #1A1A1A;
+  --slate: #6B7B8D;
+  --fog: #F5F6F4;
+  --white: #FFFFFF;
+  --cream: #FAFAF8;
+  --border: rgba(45,106,79,0.10);
+  --border-light: rgba(0,0,0,0.06);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  color: var(--charcoal);
+  background: var(--white);
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.05); }
+nav .container {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+nav .logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px; color: var(--dark); text-decoration: none;
+  letter-spacing: -0.3px;
+}
+nav .logo span { color: var(--green); }
+nav ul { display: flex; gap: 32px; list-style: none; }
+nav ul a {
+  text-decoration: none; color: var(--slate); font-size: 14px;
+  font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s;
+}
+nav ul a:hover { color: var(--green); }
+.nav-cta {
+  background: var(--green); color: var(--white) !important;
+  padding: 8px 20px; border-radius: 6px;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--green-deep) !important; color: var(--white) !important; }
+
+.hero {
+  padding: 160px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -200px; right: -300px;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, var(--green-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -100px; left: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-label {
+  display: inline-block;
+  font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 24px;
+  padding: 6px 14px;
+  background: var(--green-glow);
+  border-radius: 4px;
+  opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(42px, 5.5vw, 72px);
+  color: var(--dark);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  max-width: 720px;
+  opacity: 0; animation: fadeUp 0.6s 0.4s forwards;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--green);
+}
+.hero-sub {
+  font-size: 18px; color: var(--slate); max-width: 580px;
+  line-height: 1.7; margin-bottom: 40px;
+  opacity: 0; animation: fadeUp 0.6s 0.6s forwards;
+}
+.hero-btns {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.6s 0.8s forwards;
+}
+.btn-primary {
+  display: inline-block; padding: 14px 32px;
+  background: var(--green); color: var(--white);
+  text-decoration: none; border-radius: 6px;
+  font-weight: 600; font-size: 15px;
+  transition: all 0.25s; border: 2px solid var(--green);
+}
+.btn-primary:hover { background: var(--green-deep); border-color: var(--green-deep); transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-block; padding: 14px 32px;
+  background: transparent; color: var(--dark);
+  text-decoration: none; border-radius: 6px;
+  font-weight: 600; font-size: 15px;
+  border: 2px solid var(--border-light);
+  transition: all 0.25s;
+}
+.btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
+
+.stats-bar {
+  padding: 48px 0;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--cream);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 40px; color: var(--green);
+  line-height: 1; margin-bottom: 6px;
+}
+.stat-label {
+  font-size: 13px; color: var(--slate);
+  font-weight: 500; letter-spacing: 0.5px;
+}
+
+section { padding: 96px 0; }
+.section-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  color: var(--dark); line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.about { background: var(--white); }
+.about-content { max-width: 720px; }
+.about-content p {
+  font-size: 17px; color: var(--charcoal); margin-bottom: 20px;
+  line-height: 1.75;
+}
+.about-content strong { color: var(--green-deep); font-weight: 600; }
+
+.cases { background: var(--fog); }
+.case-grid { display: flex; flex-direction: column; gap: 32px; margin-top: 40px; }
+
+.case-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.case-card:hover {
+  box-shadow: 0 8px 40px rgba(45,106,79,0.07);
+  transform: translateY(-2px);
+}
+.case-header {
+  padding: 36px 40px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 24px;
+}
+.case-number {
+  font-family: 'DM Serif Display', serif;
+  font-size: 48px; line-height: 1; min-width: 60px;
+  color: rgba(45,106,79,0.15);
+  user-select: none;
+}
+.case-info { flex: 1; }
+.case-tag {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+.case-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px; color: var(--dark);
+  margin-bottom: 10px; line-height: 1.3;
+}
+.case-preview {
+  font-size: 15px; color: var(--slate); line-height: 1.6;
+}
+.case-toggle {
+  background: none; border: none; cursor: pointer;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--fog);
+  transition: all 0.2s;
+  flex-shrink: 0; margin-top: 8px;
+}
+.case-toggle:hover { background: var(--green-glow); }
+.case-toggle svg {
+  width: 18px; height: 18px;
+  stroke: var(--green);
+  transition: transform 0.3s;
+}
+.case-card.open .case-toggle svg { transform: rotate(180deg); }
+
+.case-detail {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.3s;
+  padding: 0 40px;
+}
+.case-card.open .case-detail {
+  max-height: 2000px;
+  padding: 0 40px 40px;
+}
+.case-detail-inner {
+  border-top: 1px solid var(--border-light);
+  padding-top: 32px;
+}
+.case-section-head {
+  font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--green);
+  margin-bottom: 10px; margin-top: 28px;
+}
+.case-section-head:first-child { margin-top: 0; }
+.case-detail p {
+  font-size: 15px; color: var(--charcoal); line-height: 1.7;
+  margin-bottom: 12px;
+}
+.case-outcomes {
+  list-style: none; padding: 0; margin-top: 8px;
+}
+.case-outcomes li {
+  font-size: 15px; color: var(--charcoal); line-height: 1.7;
+  padding-left: 20px; position: relative; margin-bottom: 8px;
+}
+.case-outcomes li::before {
+  content: ''; position: absolute;
+  left: 0; top: 10px;
+  width: 8px; height: 8px;
+  background: var(--gold); border-radius: 2px;
+}
+
+.stack { background: var(--white); }
+.stack-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 24px; margin-top: 40px;
+}
+.stack-card {
+  padding: 32px;
+  background: var(--cream);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+.stack-card:hover { border-color: var(--green-light); }
+.stack-card-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--green);
+  margin-bottom: 14px;
+}
+.stack-card-items {
+  font-size: 15px; color: var(--charcoal); line-height: 1.8;
+}
+
+.contact {
+  background: var(--green-deep);
+  padding: 96px 0;
+  position: relative;
+  overflow: hidden;
+}
+.contact::before {
+  content: '';
+  position: absolute; bottom: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact .section-label { color: var(--green-light); }
+.contact .section-title { color: var(--white); }
+.contact-sub {
+  font-size: 17px; color: rgba(255,255,255,0.55); max-width: 500px;
+  line-height: 1.7; margin-bottom: 40px;
+}
+.contact-links { display: flex; flex-direction: column; gap: 16px; }
+.contact-link {
+  display: inline-flex; align-items: center; gap: 12px;
+  text-decoration: none; font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.2s;
+}
+.contact-link:hover { color: var(--gold); }
+.contact-link svg {
+  width: 20px; height: 20px;
+  stroke: var(--green-light);
+  flex-shrink: 0;
+}
+
+.resume-banner {
+  background: var(--cream);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  padding: 40px 0;
+  text-align: center;
+}
+.resume-banner p {
+  font-size: 16px; color: var(--slate); margin-bottom: 16px;
+}
+.resume-banner .btn-primary { padding: 12px 28px; font-size: 14px; }
+
+footer {
+  background: var(--green-deep);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 13px; color: rgba(255,255,255,0.25);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.reveal.visible {
+  opacity: 1; transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 120px 0 64px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .stack-grid { grid-template-columns: 1fr; }
+  .case-header { padding: 24px; flex-direction: column; gap: 12px; }
+  .case-number { font-size: 36px; }
+  .case-detail { padding: 0 24px; }
+  .case-card.open .case-detail { padding: 0 24px 24px; }
+  nav ul { gap: 16px; }
+  nav ul a { font-size: 13px; }
+  .nav-cta { padding: 6px 14px; }
+}
+
+@media (max-width: 480px) {
+  nav ul .nav-hide { display: none; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .stat-num { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container">
+    <a href="#" class="logo">SB<span>.</span></a>
+    <ul>
+      <li><a href="#about" class="nav-hide">About</a></li>
+      <li><a href="#work" class="nav-hide">Work</a></li>
+      <li><a href="#stack" class="nav-hide">Stack</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Business Systems Manager &bull; HubSpot Solutions Architect</div>
+    <h1>I build the systems <em>companies run on.</em></h1>
+    <p class="hero-sub">
+      I migrated a nationwide field service company off Salesforce and built their entire 
+      HubSpot Enterprise portal from the ground up&mdash;196 workflows, 50 custom coded 
+      JavaScript actions, 6 custom objects, and 5 production integrations. 
+      Self-taught. Here&rsquo;s the work.
+    </p>
+    <div class="hero-btns">
+      <a href="#work" class="btn-primary">See What I&rsquo;ve Built</a>
+      <a href="#about" class="btn-secondary">My Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="reveal">
+        <div class="stat-num">196</div>
+        <div class="stat-label">Production Workflows</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num">50</div>
+        <div class="stat-label">Custom Coded Actions</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Custom Objects</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Production Integrations</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-content reveal">
+      <div class="section-label">About Me</div>
+      <div class="section-title">How I got here.</div>
+      <p>
+        I&rsquo;m Stephen Brown. I&rsquo;m based in Denver, and I&rsquo;m the Business Systems Manager 
+        at <strong>MHD</strong>, a nationwide occupational health provider. When I joined, the 
+        company was on Salesforce&mdash;but the implementation wasn&rsquo;t working. Low adoption, 
+        poor fit for the business, cost that wasn&rsquo;t justified. I was brought in to fix that.
+      </p>
+      <p>
+        I migrated the entire company off Salesforce and onto HubSpot Enterprise, then built 
+        everything on top of it. I taught myself all of it&mdash;HubSpot architecture, JavaScript, 
+        API integration, workflow design, data migration. I used AI-assisted development, HubSpot 
+        Academy, and a lot of trial and error. I didn&rsquo;t have a team or a mentor. I had a 
+        problem and a deadline.
+      </p>
+      <p>
+        In under a year, I built the entire system the company runs on. Every deal, every service, 
+        every work order, every piece of equipment flows through infrastructure I designed. 
+        I think in systems, not features. When I build something, I&rsquo;m thinking about what happens 
+        when it breaks, what happens at 10x scale, and who maintains it after me.
+      </p>
+      <p>
+        <strong>The portal is the credential.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases" id="work">
+  <div class="container">
+    <div class="section-label reveal">What I&rsquo;ve Built</div>
+    <div class="section-title reveal">The work speaks for itself.</div>
+    <div class="case-grid">
+
+      <!-- CASE 1: Salesforce to HubSpot -->
+      <div class="case-card reveal" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-number">01</div>
+          <div class="case-info">
+            <div class="case-tag">Platform Migration + Architecture</div>
+            <div class="case-title">Salesforce to HubSpot &mdash; Full Platform Swap &amp; Portal Build</div>
+            <div class="case-preview">
+              Migrated MHD off Salesforce and built the entire HubSpot Enterprise portal 
+              from the ground up&mdash;25,000+ records migrated, 6 custom objects designed, 
+              196 workflows engineered, 50 custom coded JavaScript actions authored.
+            </div>
+          </div>
+          <button class="case-toggle" aria-label="Expand">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="case-detail">
+          <div class="case-detail-inner">
+            <div class="case-section-head">The Problem</div>
+            <p>
+              MHD was running on Salesforce, but the implementation didn&rsquo;t fit the business. 
+              Adoption was low, the data model didn&rsquo;t match how the company actually operated, 
+              and the cost wasn&rsquo;t justified by the value being extracted. For a company deploying 
+              safety responders to client sites across the country, the CRM was supposed to be the 
+              operational backbone&mdash;and it wasn&rsquo;t.
+            </p>
+
+            <div class="case-section-head">What I Built</div>
+            <p>
+              I led the full platform migration and built the new portal architecture simultaneously. 
+              On the migration side: 15,000+ contacts, 10,000+ deals, and 500+ work orders moved from 
+              Salesforce to HubSpot with field mapping, data cleanup, and association reconstruction. 
+              Salesforce and HubSpot have fundamentally different data models, so nothing was a 
+              straight copy&mdash;every object and relationship had to be remapped.
+            </p>
+            <p>
+              On the architecture side: I designed 6 custom objects (Services, Work Orders, Equipment 
+              Assets, Equipment Allocations, Time Off, and more) with association labels, property groups, 
+              and role-based permission sets. Then I built the automation layer&mdash;196 production 
+              workflows, 50 of which run custom JavaScript I wrote: property stamping, batch API calls, 
+              rate limit handling, multi-object orchestration. The most complex piece was bidirectional 
+              sync between Service and Work Order records with date normalization, owner propagation, 
+              and infinite loop prevention.
+            </p>
+            <p>
+              I also architected 5 production integrations&mdash;PandaDoc, Zuper, QuickBooks Online, 
+              Outlook, and Google Workspace&mdash;using Zapier webhooks, n8n orchestration, and 
+              native HubSpot connectors.
+            </p>
+
+            <div class="case-section-head">The Result</div>
+            <ul class="case-outcomes">
+              <li>25,000+ records migrated with full data integrity and zero business disruption</li>
+              <li>Quote-to-schedule cycle time dropped from days to under one hour</li>
+              <li>Full automation across $7M+ annual revenue pipeline</li>
+              <li>Every business process governed through a single HubSpot Enterprise portal</li>
+              <li>Leadership gained real-time dashboard visibility into financial and operational performance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 2: Zuper Migration -->
+      <div class="case-card reveal" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-number">02</div>
+          <div class="case-info">
+            <div class="case-tag">Data Migration</div>
+            <div class="case-title">Zuper-to-HubSpot Migration</div>
+            <div class="case-preview">
+              Migrated 1,000+ field service records across 3 custom objects with deduplication 
+              logic and association mapping, consolidating all operational data into HubSpot.
+            </div>
+          </div>
+          <button class="case-toggle" aria-label="Expand">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="case-detail">
+          <div class="case-detail-inner">
+            <div class="case-section-head">The Problem</div>
+            <p>
+              Even after the Salesforce migration, MHD&rsquo;s field service data still lived in 
+              Zuper&mdash;a separate FSM platform with its own data model, its own object structure, 
+              and no native integration with HubSpot. Critical service history, work order records, 
+              and customer data were siloed. Nobody could see the full picture of a customer 
+              relationship in one place.
+            </p>
+
+            <div class="case-section-head">What I Built</div>
+            <p>
+              I built a migration framework, not a one-time import. The challenge wasn&rsquo;t 
+              moving rows&mdash;it was mapping Zuper&rsquo;s data model onto HubSpot&rsquo;s custom 
+              objects while handling duplicates, orphaned records, and mismatched association 
+              structures. I wrote deduplication logic to reconcile records across systems, 
+              then mapped associations so every Work Order connected to the right Service, 
+              Company, and Contact in HubSpot.
+            </p>
+
+            <div class="case-section-head">The Result</div>
+            <ul class="case-outcomes">
+              <li>1,000+ records migrated across 3 custom objects with zero data loss</li>
+              <li>HubSpot fully established as the single source of truth for all operations</li>
+              <li>Full relational structure preserved through association mapping</li>
+              <li>Deduplication eliminated redundant records accumulated across systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 3: Project MOD -->
+      <div class="case-card reveal" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-number">03</div>
+          <div class="case-info">
+            <div class="case-tag">Process Architecture</div>
+            <div class="case-title">Project MOD &mdash; Internal Ticket Workflow Redesign</div>
+            <div class="case-preview">
+              Rearchitected MHD&rsquo;s internal ticket tracking process, replacing ad-hoc 
+              issue management with a governed pipeline and automated stage transitions.
+            </div>
+          </div>
+          <button class="case-toggle" aria-label="Expand">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="case-detail">
+          <div class="case-detail-inner">
+            <div class="case-section-head">The Problem</div>
+            <p>
+              MHD&rsquo;s internal ticket tracking had grown organically&mdash;and it showed. Issues 
+              were reported inconsistently, routed manually, and resolved without any documented 
+              process. There was no visibility into ticket volume, resolution time, or recurring 
+              problems. When I ran a root cause analysis, I found that 40&ndash;50% of service 
+              disruptions traced back to internal operational issues, not field problems. The 
+              company didn&rsquo;t just need a ticketing system&mdash;it needed to see where it was 
+              breaking itself.
+            </p>
+
+            <div class="case-section-head">What I Built</div>
+            <p>
+              I designed a governed ticket pipeline with structured stages: Intake &rarr; Customer 
+              Outreach &rarr; Update Scheduling &amp; Field Ops &rarr; Update Invoice &amp; Records 
+              &rarr; Closed &rarr; Returned to Sales. Each stage transition triggers automated 
+              actions&mdash;owner reassignment, task creation, notification routing, and property 
+              updates. I built categorization logic so every ticket is tagged by root cause, 
+              giving leadership data on where operational breakdowns actually happen.
+            </p>
+
+            <div class="case-section-head">The Result</div>
+            <ul class="case-outcomes">
+              <li>Governed pipeline replaced unstructured, ad-hoc ticket management</li>
+              <li>Automated routing and stage transitions eliminated manual handoffs</li>
+              <li>Root cause analysis revealed 40&ndash;50% of disruptions were internal, driving targeted process improvements</li>
+              <li>Leadership gained visibility into ticket volume, resolution time, and recurring issues</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="stack" id="stack">
+  <div class="container">
+    <div class="section-label reveal">Tech Stack</div>
+    <div class="section-title reveal">What I work with.</div>
+    <div class="stack-grid">
+      <div class="stack-card reveal">
+        <div class="stack-card-label">Platforms</div>
+        <div class="stack-card-items">
+          HubSpot Enterprise (Sales, Service, Operations Hubs)<br>
+          PandaDoc &bull; Zuper FSM &bull; QuickBooks Online
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-card-label">Automation</div>
+        <div class="stack-card-items">
+          HubSpot Workflows &bull; Custom Coded Actions<br>
+          Zapier &bull; Make &bull; n8n &bull; Webhooks
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-card-label">Development</div>
+        <div class="stack-card-items">
+          JavaScript (ES6+) &bull; JSON &bull; REST APIs<br>
+          Google Apps Script &bull; HubSpot Private App Tokens
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-card-label">Architecture</div>
+        <div class="stack-card-items">
+          Custom Object Design &bull; Data Migration<br>
+          Pipeline Governance &bull; SSOT Methodology &bull; EOS
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME BANNER -->
+<div class="resume-banner">
+  <div class="container">
+    <p>Want the full picture?</p>
+    <a href="#" class="btn-primary">Download My Resume</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label reveal">Contact</div>
+    <div class="section-title reveal">Get in touch.</div>
+    <p class="contact-sub reveal">
+      I&rsquo;m always open to connecting&mdash;whether it&rsquo;s about a role, 
+      a project, or just talking shop about HubSpot architecture.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:StephenBrownCreations@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/>
+        </svg>
+        StephenBrownCreations@gmail.com
+      </a>
+      <a href="tel:7046359240" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        704-635-9240
+      </a>
+      <a href="https://www.linkedin.com/in/stephenbrown1120/" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+        </svg>
+        linkedin.com/in/stephenbrown1120
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">&copy; 2025 Stephen Brown. Denver, CO.</div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+function toggleCase(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.case-card.open').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
