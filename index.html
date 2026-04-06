@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stephen Brown — Systems Architect Portfolio</title>
+<title>Stephen Brown — Systems Architect</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -136,26 +136,24 @@ nav ul a:hover { color: var(--green); }
 }
 .btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
 
-.stats-bar {
-  padding: 48px 0;
+.philosophy {
+  padding: 64px 0;
   border-top: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
   background: var(--cream);
 }
-.stats-grid {
+.phil-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  text-align: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
 }
-.stat-num {
+.phil-title {
   font-family: 'DM Serif Display', serif;
-  font-size: 40px; color: var(--green);
-  line-height: 1; margin-bottom: 6px;
+  font-size: 20px; color: var(--dark);
+  margin-bottom: 10px; line-height: 1.3;
 }
-.stat-label {
-  font-size: 13px; color: var(--slate);
-  font-weight: 500; letter-spacing: 0.5px;
+.phil-desc {
+  font-size: 15px; color: var(--slate); line-height: 1.7;
 }
 
 section { padding: 96px 0; }
@@ -177,6 +175,33 @@ section { padding: 96px 0; }
   line-height: 1.75;
 }
 .about-content strong { color: var(--green-deep); font-weight: 600; }
+
+.now { background: var(--white); }
+.now-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 28px; margin-top: 40px;
+}
+.now-card {
+  padding: 32px;
+  background: var(--cream);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+.now-card:hover { border-color: var(--green-light); }
+.now-card-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px;
+}
+.now-card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px; color: var(--dark);
+  margin-bottom: 10px; line-height: 1.3;
+}
+.now-card-desc {
+  font-size: 15px; color: var(--slate); line-height: 1.7;
+}
 
 .cases { background: var(--fog); }
 .case-grid { display: flex; flex-direction: column; gap: 32px; margin-top: 40px; }
@@ -271,28 +296,6 @@ section { padding: 96px 0; }
   background: var(--gold); border-radius: 2px;
 }
 
-.stack { background: var(--white); }
-.stack-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 24px; margin-top: 40px;
-}
-.stack-card {
-  padding: 32px;
-  background: var(--cream);
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
-  transition: border-color 0.2s;
-}
-.stack-card:hover { border-color: var(--green-light); }
-.stack-card-label {
-  font-size: 11px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--green);
-  margin-bottom: 14px;
-}
-.stack-card-items {
-  font-size: 15px; color: var(--charcoal); line-height: 1.8;
-}
-
 .contact {
   background: var(--green-deep);
   padding: 96px 0;
@@ -361,8 +364,8 @@ footer {
 
 @media (max-width: 768px) {
   .hero { padding: 120px 0 64px; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .stack-grid { grid-template-columns: 1fr; }
+  .phil-grid { grid-template-columns: 1fr; gap: 32px; }
+  .now-grid { grid-template-columns: 1fr; }
   .case-header { padding: 24px; flex-direction: column; gap: 12px; }
   .case-number { font-size: 36px; }
   .case-detail { padding: 0 24px; }
@@ -374,8 +377,6 @@ footer {
 
 @media (max-width: 480px) {
   nav ul .nav-hide { display: none; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .stat-num { font-size: 32px; }
 }
 </style>
 </head>
@@ -387,7 +388,7 @@ footer {
     <ul>
       <li><a href="#about" class="nav-hide">About</a></li>
       <li><a href="#work" class="nav-hide">Work</a></li>
-      <li><a href="#stack" class="nav-hide">Stack</a></li>
+      <li><a href="#now" class="nav-hide">Now</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
   </div>
@@ -396,40 +397,47 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-label">Business Systems Manager &bull; HubSpot Solutions Architect</div>
-    <h1>I build the systems <em>companies run on.</em></h1>
+    <div class="hero-label">Business Systems Manager &bull; RevOps Architect</div>
+    <h1>One person. <em>Entire operational backbone.</em></h1>
     <p class="hero-sub">
-      I migrated a nationwide field service company off Salesforce and built their entire 
-      HubSpot Enterprise portal from the ground up&mdash;196 workflows, 50 custom coded 
-      JavaScript actions, 6 custom objects, and 5 production integrations. 
-      Self-taught. Here&rsquo;s the work.
+      I run the systems behind a nationwide field service company. The CRM, the integrations, 
+      the pricing engine, the customer portal, the AI layer. I built all of it, and I got 
+      every team to use it. No team behind me. No playbook handed to me.
     </p>
     <div class="hero-btns">
-      <a href="#work" class="btn-primary">See What I&rsquo;ve Built</a>
-      <a href="#about" class="btn-secondary">My Story</a>
+      <a href="#about" class="btn-primary">My Story</a>
+      <a href="#work" class="btn-secondary">See the Work</a>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-bar">
+<!-- PHILOSOPHY -->
+<div class="philosophy">
   <div class="container">
-    <div class="stats-grid">
+    <div class="phil-grid">
       <div class="reveal">
-        <div class="stat-num">196</div>
-        <div class="stat-label">Production Workflows</div>
+        <div class="phil-title">Systems over features.</div>
+        <div class="phil-desc">
+          I don't build tools. I build the infrastructure a company runs on. 
+          Every decision I make accounts for what breaks at scale, what survives 
+          turnover, and who maintains it when I'm not around.
+        </div>
       </div>
       <div class="reveal">
-        <div class="stat-num">50</div>
-        <div class="stat-label">Custom Coded Actions</div>
+        <div class="phil-title">Adoption is the product.</div>
+        <div class="phil-desc">
+          The best architecture in the world is worthless if nobody uses it. I build 
+          things so well that people don't push back. My last major build hit 100% 
+          adoption on day one. No training session. No mandate.
+        </div>
       </div>
       <div class="reveal">
-        <div class="stat-num">6</div>
-        <div class="stat-label">Custom Objects</div>
-      </div>
-      <div class="reveal">
-        <div class="stat-num">5</div>
-        <div class="stat-label">Production Integrations</div>
+        <div class="phil-title">Leadership without the title.</div>
+        <div class="phil-desc">
+          I drive change across sales, ops, finance, and field teams without 
+          positional authority. I report to the CEO because that's where 
+          the trust landed.
+        </div>
       </div>
     </div>
   </div>
@@ -440,29 +448,85 @@ footer {
   <div class="container">
     <div class="about-content reveal">
       <div class="section-label">About Me</div>
-      <div class="section-title">How I got here.</div>
+      <div class="section-title">I had a problem and a deadline.</div>
       <p>
-        I&rsquo;m Stephen Brown. I&rsquo;m based in Denver, and I&rsquo;m the Business Systems Manager 
-        at <strong>MHD</strong>, a nationwide occupational health provider. When I joined, the 
-        company was on Salesforce&mdash;but the implementation wasn&rsquo;t working. Low adoption, 
-        poor fit for the business, cost that wasn&rsquo;t justified. I was brought in to fix that.
+        I'm Stephen Brown. Based in Denver. I'm the Business Systems Manager and RevOps 
+        Architect at <strong>MHD</strong>, a nationwide company that does OSHA compliance, 
+        audiometric testing, respirator fit testing, air monitoring, and related occupational 
+        health work. When I got here, the company was on a Salesforce instance that didn't 
+        fit the business. Adoption was low, the data model was wrong, and the cost wasn't 
+        worth what they were getting out of it.
       </p>
       <p>
-        I migrated the entire company off Salesforce and onto HubSpot Enterprise, then built 
-        everything on top of it. I taught myself all of it&mdash;HubSpot architecture, JavaScript, 
-        API integration, workflow design, data migration. I used AI-assisted development, HubSpot 
-        Academy, and a lot of trial and error. I didn&rsquo;t have a team or a mentor. I had a 
-        problem and a deadline.
+        So I moved the whole company off Salesforce and onto HubSpot Enterprise. Then I built 
+        everything on top of it. JavaScript, API integrations, workflow architecture, data 
+        migration. I learned all of it on my own. No bootcamp, no CS degree, nobody showing me 
+        how. I picked up AI-assisted development early and started shipping production systems 
+        with it while most companies were still debating whether to try ChatGPT.
       </p>
       <p>
-        In under a year, I built the entire system the company runs on. Every deal, every service, 
-        every work order, every piece of equipment flows through infrastructure I designed. 
-        I think in systems, not features. When I build something, I&rsquo;m thinking about what happens 
-        when it breaks, what happens at 10x scale, and who maintains it after me.
+        Within a year I became the entire operational nervous system of a $7M+ company. Every 
+        deal, every service record, every work order, every piece of equipment, every invoice 
+        runs through infrastructure I designed. I own the CRM, field ops, scheduling, 
+        integrations, reporting, data governance, and AI strategy across the organization.
       </p>
       <p>
-        <strong>The portal is the credential.</strong>
+        But the technical stuff isn't really the hard part. The hard part is getting people to 
+        change how they work. Sales reps who didn't ask for new workflows. Field techs who 
+        didn't want new tools. Finance running the same processes for years. I moved all of 
+        them. Not because I had authority over any of them, but because the things I built 
+        were obviously better than what they replaced.
       </p>
+      <p>
+        That's the actual job. Not the code. The people.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I'M BUILDING NOW -->
+<section class="now" id="now">
+  <div class="container">
+    <div class="section-label reveal">Right Now</div>
+    <div class="section-title reveal">What I'm working on in 2026.</div>
+    <div class="now-grid">
+      <div class="now-card reveal">
+        <div class="now-card-label">AI + Operations</div>
+        <div class="now-card-title">AI-Powered Pricing Engine</div>
+        <div class="now-card-desc">
+          Built Matrix, a CPQ engine that replaced our entire manual deal-pricing process. 
+          It calculates travel costs, pulls real-time airfare, enforces margin floors, and 
+          uses Claude AI for pricing reasoning. All from inside the CRM. The whole team 
+          adopted it the day it went live.
+        </div>
+      </div>
+      <div class="now-card reveal">
+        <div class="now-card-label">Customer Experience</div>
+        <div class="now-card-title">Secure Client Portal</div>
+        <div class="now-card-desc">
+          Built a customer portal that gives clients direct access to their compliance 
+          reports. Respirator fit testing, audiometric testing, noise surveys, air 
+          monitoring. Replaced the old process of emailing files back and forth.
+        </div>
+      </div>
+      <div class="now-card reveal">
+        <div class="now-card-label">Strategic Analysis</div>
+        <div class="now-card-title">Revenue Root Cause Analysis</div>
+        <div class="now-card-desc">
+          Ran a full analysis that found a 31% rebook/renewal collapse as the real driver 
+          behind our revenue decline. Everyone assumed it was a sales problem. It wasn't. 
+          Three executive deliverables later, we changed the 2026 strategy.
+        </div>
+      </div>
+      <div class="now-card reveal">
+        <div class="now-card-label">Knowledge Management</div>
+        <div class="now-card-title">The MHD Way</div>
+        <div class="now-card-desc">
+          Building a playbook system to document everything I've built and learned. A 
+          system is only as durable as the documentation that survives the person who 
+          built it. I want this to outlast me.
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -470,21 +534,21 @@ footer {
 <!-- CASE STUDIES -->
 <section class="cases" id="work">
   <div class="container">
-    <div class="section-label reveal">What I&rsquo;ve Built</div>
-    <div class="section-title reveal">The work speaks for itself.</div>
+    <div class="section-label reveal">The Work</div>
+    <div class="section-title reveal">Proof, not promises.</div>
     <div class="case-grid">
 
-      <!-- CASE 1: Salesforce to HubSpot -->
+      <!-- CASE 1 -->
       <div class="case-card reveal" onclick="toggleCase(this)">
         <div class="case-header">
           <div class="case-number">01</div>
           <div class="case-info">
-            <div class="case-tag">Platform Migration + Architecture</div>
-            <div class="case-title">Salesforce to HubSpot &mdash; Full Platform Swap &amp; Portal Build</div>
+            <div class="case-tag">The Foundation</div>
+            <div class="case-title">I replaced the operating system of a company.</div>
             <div class="case-preview">
-              Migrated MHD off Salesforce and built the entire HubSpot Enterprise portal 
-              from the ground up&mdash;25,000+ records migrated, 6 custom objects designed, 
-              196 workflows engineered, 50 custom coded JavaScript actions authored.
+              Took a nationwide field service operation off Salesforce and built a full 
+              HubSpot Enterprise portal from scratch. 6 custom objects, 200+ workflows, 
+              7 production integrations. Every business process runs through it now.
             </div>
           </div>
           <button class="case-toggle" aria-label="Expand">
@@ -493,60 +557,53 @@ footer {
         </div>
         <div class="case-detail">
           <div class="case-detail-inner">
-            <div class="case-section-head">The Problem</div>
+            <div class="case-section-head">Why It Mattered</div>
             <p>
-              MHD was running on Salesforce, but the implementation didn&rsquo;t fit the business. 
-              Adoption was low, the data model didn&rsquo;t match how the company actually operated, 
-              and the cost wasn&rsquo;t justified by the value being extracted. For a company deploying 
-              safety responders to client sites across the country, the CRM was supposed to be the 
-              operational backbone&mdash;and it wasn&rsquo;t.
+              The Salesforce setup didn't match how the business actually worked. Adoption was 
+              low, the data was unreliable, and the spend wasn't justified. For a company 
+              sending safety responders to job sites across the country, the CRM is supposed 
+              to be the backbone of everything. It wasn't. Nobody trusted the data, so nobody 
+              used the system.
             </p>
 
-            <div class="case-section-head">What I Built</div>
+            <div class="case-section-head">What I Did</div>
             <p>
-              I led the full platform migration and built the new portal architecture simultaneously. 
-              On the migration side: 15,000+ contacts, 10,000+ deals, and 500+ work orders moved from 
-              Salesforce to HubSpot with field mapping, data cleanup, and association reconstruction. 
-              Salesforce and HubSpot have fundamentally different data models, so nothing was a 
-              straight copy&mdash;every object and relationship had to be remapped.
+              Migrated 25,000+ records from Salesforce to HubSpot. Not a copy-paste job. The 
+              two platforms have completely different data models, so every object and 
+              relationship had to be remapped. Then I built the architecture: 6 custom objects 
+              with association labels, 200+ workflows including custom JavaScript for batch 
+              API calls and bidirectional data sync, and integrations across PandaDoc, 
+              QuickBooks, Outlook, Google Workspace, Ramp, and n8n.
             </p>
             <p>
-              On the architecture side: I designed 6 custom objects (Services, Work Orders, Equipment 
-              Assets, Equipment Allocations, Time Off, and more) with association labels, property groups, 
-              and role-based permission sets. Then I built the automation layer&mdash;196 production 
-              workflows, 50 of which run custom JavaScript I wrote: property stamping, batch API calls, 
-              rate limit handling, multi-object orchestration. The most complex piece was bidirectional 
-              sync between Service and Work Order records with date normalization, owner propagation, 
-              and infinite loop prevention.
-            </p>
-            <p>
-              I also architected 5 production integrations&mdash;PandaDoc, Zuper, QuickBooks Online, 
-              Outlook, and Google Workspace&mdash;using Zapier webhooks, n8n orchestration, and 
-              native HubSpot connectors.
+              The hardest part wasn't building it. It was getting a whole company to switch how 
+              they work and trust a brand new system enough to depend on it. That happened 
+              because the system was better, not because anyone was told to use it.
             </p>
 
-            <div class="case-section-head">The Result</div>
+            <div class="case-section-head">What Changed</div>
             <ul class="case-outcomes">
-              <li>25,000+ records migrated with full data integrity and zero business disruption</li>
-              <li>Quote-to-schedule cycle time dropped from days to under one hour</li>
-              <li>Full automation across $7M+ annual revenue pipeline</li>
-              <li>Every business process governed through a single HubSpot Enterprise portal</li>
-              <li>Leadership gained real-time dashboard visibility into financial and operational performance</li>
+              <li>Quote-to-schedule went from days to under an hour</li>
+              <li>$7M+ revenue pipeline fully automated through one portal</li>
+              <li>Leadership got real-time visibility into operations for the first time</li>
+              <li>Zero business disruption during the migration</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- CASE 2: Zuper Migration -->
+      <!-- CASE 2 -->
       <div class="case-card reveal" onclick="toggleCase(this)">
         <div class="case-header">
           <div class="case-number">02</div>
           <div class="case-info">
-            <div class="case-tag">Data Migration</div>
-            <div class="case-title">Zuper-to-HubSpot Migration</div>
+            <div class="case-tag">The Pricing Problem</div>
+            <div class="case-title">I automated the hardest thing to automate: judgment.</div>
             <div class="case-preview">
-              Migrated 1,000+ field service records across 3 custom objects with deduplication 
-              logic and association mapping, consolidating all operational data into HubSpot.
+              Everything you needed to know to price a deal lived in one person's head. I 
+              turned that into a system. Built an AI-powered pricing engine called Matrix 
+              that replaced the entire manual process. Every person on the team adopted it 
+              the day it shipped.
             </div>
           </div>
           <button class="case-toggle" aria-label="Expand">
@@ -555,46 +612,50 @@ footer {
         </div>
         <div class="case-detail">
           <div class="case-detail-inner">
-            <div class="case-section-head">The Problem</div>
+            <div class="case-section-head">Why It Mattered</div>
             <p>
-              Even after the Salesforce migration, MHD&rsquo;s field service data still lived in 
-              Zuper&mdash;a separate FSM platform with its own data model, its own object structure, 
-              and no native integration with HubSpot. Critical service history, work order records, 
-              and customer data were siloed. Nobody could see the full picture of a customer 
-              relationship in one place.
+              Pricing a deal meant calculating margin targets by deal type, factoring in 
+              travel costs based on where the nearest tech was, checking airfare when driving 
+              wasn't realistic, and remembering a bunch of service-specific rules that only 
+              one person fully understood. That's not a process. That's a single point of 
+              failure. It doesn't scale, and it falls apart during a vacation.
             </p>
 
-            <div class="case-section-head">What I Built</div>
+            <div class="case-section-head">What I Did</div>
             <p>
-              I built a migration framework, not a one-time import. The challenge wasn&rsquo;t 
-              moving rows&mdash;it was mapping Zuper&rsquo;s data model onto HubSpot&rsquo;s custom 
-              objects while handling duplicates, orphaned records, and mismatched association 
-              structures. I wrote deduplication logic to reconcile records across systems, 
-              then mapped associations so every Work Order connected to the right Service, 
-              Company, and Contact in HubSpot.
+              Built Matrix as a CRM-embedded app with Next.js and TypeScript. It pulls deal 
+              data straight from HubSpot, calculates travel via Google Distance Matrix, checks 
+              real-time airfare through the Duffel API, enforces margin floors by deal type, 
+              and runs the full context through Anthropic's Claude API for pricing reasoning.
+            </p>
+            <p>
+              Every rule, every exception, every judgment call is now in the system. One click, 
+              fully calculated sale price. The person who used to carry all that knowledge in 
+              their head? They adopted it first.
             </p>
 
-            <div class="case-section-head">The Result</div>
+            <div class="case-section-head">What Changed</div>
             <ul class="case-outcomes">
-              <li>1,000+ records migrated across 3 custom objects with zero data loss</li>
-              <li>HubSpot fully established as the single source of truth for all operations</li>
-              <li>Full relational structure preserved through association mapping</li>
-              <li>Deduplication eliminated redundant records accumulated across systems</li>
+              <li>100% adoption on day one. No training, no pushback.</li>
+              <li>Manual pricing calculations gone entirely</li>
+              <li>Tribal knowledge turned into an auditable system</li>
+              <li>AI reasoning on margin optimization for every deal</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- CASE 3: Project MOD -->
+      <!-- CASE 3 -->
       <div class="case-card reveal" onclick="toggleCase(this)">
         <div class="case-header">
           <div class="case-number">03</div>
           <div class="case-info">
-            <div class="case-tag">Process Architecture</div>
-            <div class="case-title">Project MOD &mdash; Internal Ticket Workflow Redesign</div>
+            <div class="case-tag">The Strategy Shift</div>
+            <div class="case-title">I told leadership what nobody else would.</div>
             <div class="case-preview">
-              Rearchitected MHD&rsquo;s internal ticket tracking process, replacing ad-hoc 
-              issue management with a governed pipeline and automated stage transitions.
+              Revenue was down and everyone assumed it was a sales problem. I pulled the data 
+              and showed it was a retention problem. A 31% collapse in rebooking. Three 
+              executive deliverables later, the company changed its 2026 strategy.
             </div>
           </div>
           <button class="case-toggle" aria-label="Expand">
@@ -603,76 +664,143 @@ footer {
         </div>
         <div class="case-detail">
           <div class="case-detail-inner">
-            <div class="case-section-head">The Problem</div>
+            <div class="case-section-head">Why It Mattered</div>
             <p>
-              MHD&rsquo;s internal ticket tracking had grown organically&mdash;and it showed. Issues 
-              were reported inconsistently, routed manually, and resolved without any documented 
-              process. There was no visibility into ticket volume, resolution time, or recurring 
-              problems. When I ran a root cause analysis, I found that 40&ndash;50% of service 
-              disruptions traced back to internal operational issues, not field problems. The 
-              company didn&rsquo;t just need a ticketing system&mdash;it needed to see where it was 
-              breaking itself.
+              Revenue was down about 22% year-over-year and the instinct was to push harder on 
+              new business. But nobody had actually sat down with the data and figured out what 
+              was going wrong. Without a real diagnosis, everything they tried was a guess.
             </p>
 
-            <div class="case-section-head">What I Built</div>
+            <div class="case-section-head">What I Did</div>
             <p>
-              I designed a governed ticket pipeline with structured stages: Intake &rarr; Customer 
-              Outreach &rarr; Update Scheduling &amp; Field Ops &rarr; Update Invoice &amp; Records 
-              &rarr; Closed &rarr; Returned to Sales. Each stage transition triggers automated 
-              actions&mdash;owner reassignment, task creation, notification routing, and property 
-              updates. I built categorization logic so every ticket is tagged by root cause, 
-              giving leadership data on where operational breakdowns actually happen.
+              Segmented revenue by deal type, pipeline stage, and customer lifecycle. The data 
+              told a clear story: the decline came from a 31% collapse in rebook and renewal 
+              revenue, not new business. I also dug into 709 closed-lost deals and found that 
+              price was the top reason we were losing, and that not a single lost deal had 
+              ever made it to the Scheduled stage.
+            </p>
+            <p>
+              I found competitive pressure from full-lifecycle compliance providers and showed 
+              that MHD couldn't justify its pricing without broadening the service model. Put 
+              together a root cause analysis, a strategic response framework, and an initiatives 
+              roadmap. All three went to leadership and changed the plan.
             </p>
 
-            <div class="case-section-head">The Result</div>
+            <div class="case-section-head">What Changed</div>
             <ul class="case-outcomes">
-              <li>Governed pipeline replaced unstructured, ad-hoc ticket management</li>
-              <li>Automated routing and stage transitions eliminated manual handoffs</li>
-              <li>Root cause analysis revealed 40&ndash;50% of disruptions were internal, driving targeted process improvements</li>
-              <li>Leadership gained visibility into ticket volume, resolution time, and recurring issues</li>
+              <li>Reframed the problem from acquisition to retention</li>
+              <li>Competitive gaps came to the surface that nobody had been talking about</li>
+              <li>Three executive deliverables directly shaped the go-to-market strategy</li>
+              <li>Gut-feel planning replaced with actual data</li>
             </ul>
           </div>
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
+      <!-- CASE 4 -->
+      <div class="case-card reveal" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-number">04</div>
+          <div class="case-info">
+            <div class="case-tag">The Multiplier</div>
+            <div class="case-title">I brought AI into operations before anyone asked.</div>
+            <div class="case-preview">
+              Built the integration layer connecting our CRM to language models for intelligent 
+              automation. Then wrote the playbook that taught every non-technical team in the 
+              company how to actually use AI in their day-to-day.
+            </div>
+          </div>
+          <button class="case-toggle" aria-label="Expand">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="case-detail">
+          <div class="case-detail-inner">
+            <div class="case-section-head">Why It Mattered</div>
+            <p>
+              AI was going to change how small ops teams work. I didn't wait for someone to 
+              ask me to figure it out. The company had no way to connect the CRM to AI models, 
+              no rules around how to use them, and no guidance for teams who could benefit the 
+              most but didn't know where to start.
+            </p>
 
-<!-- TECH STACK -->
-<section class="stack" id="stack">
-  <div class="container">
-    <div class="section-label reveal">Tech Stack</div>
-    <div class="section-title reveal">What I work with.</div>
-    <div class="stack-grid">
-      <div class="stack-card reveal">
-        <div class="stack-card-label">Platforms</div>
-        <div class="stack-card-items">
-          HubSpot Enterprise (Sales, Service, Operations Hubs)<br>
-          PandaDoc &bull; Zuper FSM &bull; QuickBooks Online
+            <div class="case-section-head">What I Did</div>
+            <p>
+              Built a production integration: HubSpot workflows trigger n8n orchestration, 
+              which routes context to Anthropic's Claude API for things like proposal 
+              personalization, data enrichment, and smart routing. This is part of a bigger 
+              architecture I designed called Sentinel, a two-layer system with Claude and MCP 
+              for on-demand queries and n8n for event-driven automation across the full stack.
+            </p>
+            <p>
+              Then I wrote an AI usage playbook and rolled it out to scheduling, finance, and 
+              leadership. Prompt engineering basics, use cases by department, guardrails. The 
+              point was to make AI something everyone could pick up, not just the person who 
+              wired the integrations.
+            </p>
+
+            <div class="case-section-head">What Changed</div>
+            <ul class="case-outcomes">
+              <li>Production AI integration between HubSpot and Claude API</li>
+              <li>Proposal personalization running off deal stage changes</li>
+              <li>AI playbook adopted across non-technical teams</li>
+              <li>Architecture in place to scale AI-powered operations going forward</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="stack-card reveal">
-        <div class="stack-card-label">Automation</div>
-        <div class="stack-card-items">
-          HubSpot Workflows &bull; Custom Coded Actions<br>
-          Zapier &bull; Make &bull; n8n &bull; Webhooks
+
+      <!-- CASE 5 -->
+      <div class="case-card reveal" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-number">05</div>
+          <div class="case-info">
+            <div class="case-tag">The Mirror</div>
+            <div class="case-title">I showed the company where it was breaking itself.</div>
+            <div class="case-preview">
+              Built a governed service modification pipeline and ran a 448-ticket root cause 
+              analysis. Turned out about half the service disruptions were self-inflicted. 
+              That changed how leadership thought about where to invest.
+            </div>
+          </div>
+          <button class="case-toggle" aria-label="Expand">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="case-detail">
+          <div class="case-detail-inner">
+            <div class="case-section-head">Why It Mattered</div>
+            <p>
+              Internal issues got tracked however whoever was handling them felt like tracking 
+              them that day. No structure, no categories, no way to see patterns. The assumption 
+              was always that disruptions were field problems. Nobody had the numbers to say 
+              otherwise.
+            </p>
+
+            <div class="case-section-head">What I Did</div>
+            <p>
+              Built a governed pipeline: Intake, Customer Outreach, Update Scheduling and 
+              Field Ops, Update Invoice and Records, Closed, Returned to Sales. Automated the 
+              stage transitions, owner reassignment, task creation, and notifications. Tagged 
+              every ticket by root cause.
+            </p>
+            <p>
+              Then I analyzed 448 tickets and found that 40 to 50 percent of service disruptions 
+              traced back to internal ops issues, not the field. That was the first time anyone 
+              at the company had hard numbers showing where it was hurting itself.
+            </p>
+
+            <div class="case-section-head">What Changed</div>
+            <ul class="case-outcomes">
+              <li>Structured pipeline replaced scattered tracking</li>
+              <li>Root cause data proved about half the disruptions were internal</li>
+              <li>Leadership could see recurring failures for the first time</li>
+              <li>Process improvements got targeted instead of guessed at</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="stack-card reveal">
-        <div class="stack-card-label">Development</div>
-        <div class="stack-card-items">
-          JavaScript (ES6+) &bull; JSON &bull; REST APIs<br>
-          Google Apps Script &bull; HubSpot Private App Tokens
-        </div>
-      </div>
-      <div class="stack-card reveal">
-        <div class="stack-card-label">Architecture</div>
-        <div class="stack-card-items">
-          Custom Object Design &bull; Data Migration<br>
-          Pipeline Governance &bull; SSOT Methodology &bull; EOS
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -689,10 +817,10 @@ footer {
 <section class="contact" id="contact">
   <div class="container">
     <div class="section-label reveal">Contact</div>
-    <div class="section-title reveal">Get in touch.</div>
+    <div class="section-title reveal">Let's talk.</div>
     <p class="contact-sub reveal">
-      I&rsquo;m always open to connecting&mdash;whether it&rsquo;s about a role, 
-      a project, or just talking shop about HubSpot architecture.
+      Always happy to connect. Whether it's about a role, a project, or just comparing 
+      notes on building the systems companies actually run on.
     </p>
     <div class="contact-links reveal">
       <a href="mailto:StephenBrownCreations@gmail.com" class="contact-link">
